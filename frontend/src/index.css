@@ -1,0 +1,308 @@
+/* Reset some basic styles */
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+}
+
+:root {
+  --color-paragraph: #f5f5f5; /* Very light gray for paragraph text */
+  --color-headings: #ffffff; /* White for headings */
+  --color-button-bg-primary: #005a9c; /* Deep blue for primary buttons */
+  --color-button-text-primary: #ffffff; /* White text color for primary buttons */
+  --color-button-bg-primary-hover: #003d66; /* Even deeper blue for primary button hover */
+  --color-button-bg-secondary: #8a8a8a; /* Neutral gray for secondary buttons */
+  --color-button-text-secondary: #ffffff; /* White text color for secondary buttons */
+  --color-button-bg-secondary-hover: #6d6d6d; /* Darker gray for secondary button hover */
+  --color-selection-bg: #007acc; /* Bright blue for text selection background */
+  --color-selection-text: #ffffff; /* White text color for text selection */
+  --color-body-bg: #1c1c1c; /* Very dark background color for body */
+}
+
+/* Set base font size */
+html {
+  font-size: 62.5%; /* 1rem = 10px */
+}
+body {
+  background-color: var(--color-body-bg);
+}
+/* Utility classes */
+.container {
+  width: 80vw;
+  margin: auto;
+  /* padding: 2rem; */
+}
+
+.nav {
+  position: sticky;
+  top: 0;
+  left: 0;
+  background-color: var(--color-body-bg);
+}
+.nav .container {
+  height: 80px;
+
+  display: flex;
+  /* justify-content: space-between; */
+  font-size: 18px;
+  align-items: center;
+  text-decoration: none;
+  gap: 40px;
+  margin-bottom: 30px;
+}
+.gap {
+  gap: 10px;
+}
+.nav .container * {
+  color: white;
+  text-decoration: none;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.text-left {
+  text-align: left;
+}
+.m {
+  margin: 2rem;
+}
+.mt-2 {
+  margin-top: 2rem;
+}
+
+.mb-2 {
+  margin-bottom: 2rem;
+}
+.ml-2 {
+  margin-left: 2rem;
+}
+.mr {
+  margin-right: 2rem;
+}
+
+.p {
+  padding: 2rem;
+}
+.pt-2 {
+  padding-top: 2rem;
+}
+
+.pb-2 {
+  padding-bottom: 2rem;
+}
+.pl-2 {
+  padding-left: 2rem;
+}
+.pr {
+  padding-right: 2rem;
+}
+
+button,
+.btn {
+  display: inline-block;
+  cursor: pointer;
+  padding: 1rem 2.5rem;
+  margin: 1rem 0;
+  border: 0.2rem solid transparent;
+  color: black;
+  background-color: white;
+  font-size: 1.6rem;
+  text-align: center;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+button:hover,
+.btn:hover {
+  background-color: var(--color-body-bg);
+  border: 0.2rem solid white;
+  color: white;
+  /* scale: 1; */
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin-bottom: 2rem;
+  /* font-weight: ; */
+  color: var(--color-headings); /* Light gray for headings */
+}
+
+h1 {
+  font-size: 3.2rem;
+}
+
+h2 {
+  font-size: 2.4rem;
+}
+
+h3 {
+  font-size: 1.8rem;
+}
+
+h4 {
+  font-size: 1.6rem;
+}
+
+h5 {
+  font-size: 1.4rem;
+}
+
+h6 {
+  font-size: 1.2rem;
+}
+
+p {
+  margin-bottom: 1.6rem;
+  font-size: 1.6rem;
+  line-height: 1.8;
+  position: relative;
+  z-index: 1;
+  color: var(--color-headings);
+}
+
+ul,
+ol {
+  margin-bottom: 1.6rem;
+  padding-left: 2rem;
+  list-style: none;
+}
+
+li {
+  margin-bottom: 0.8rem;
+}
+label {
+  font-size: 18px;
+  color: white;
+}
+
+input,
+textarea,
+select {
+  font-size: 1.6rem;
+  padding: 1rem;
+  margin-bottom: 1.6rem;
+  border-radius: 0.5rem;
+  border: 1px solid var(--color-border); /* Muted blue border */
+  color: white; /* Light text color */
+  width: 100%;
+  box-sizing: border-box;
+}
+
+button {
+  font-size: 1.6rem;
+}
+span {
+  font-weight: bolder;
+  color: white;
+}
+.flex {
+  display: flex;
+}
+.align-center {
+  align-items: center;
+}
+.justify-center {
+  justify-content: center;
+}
+.grow {
+  flex: 1;
+}
+.space-between {
+  justify-content: space-between;
+}
+.row {
+  flex-direction: row;
+}
+.column {
+  flex-direction: column;
+}
+.wrap {
+  flex-wrap: wrap;
+}
+@media (max-width: 1200px) {
+  button {
+    padding: 0.8rem 1.6rem;
+  }
+
+  h1 {
+    font-size: 2.8rem;
+  }
+
+  h2 {
+    font-size: 2.2rem;
+  }
+
+  h3 {
+    font-size: 1.6rem;
+  }
+}
+
+@media (max-width: 992px) {
+  button {
+    padding: 0.6rem 1.4rem;
+  }
+
+  h1 {
+    font-size: 2.4rem;
+  }
+
+  h2 {
+    font-size: 1.8rem;
+  }
+
+  h3 {
+    font-size: 1.4rem;
+  }
+}
+
+@media (max-width: 768px) {
+  button {
+    padding: 0.5rem 1.2rem;
+  }
+
+  h1 {
+    font-size: 2rem;
+  }
+
+  h2 {
+    font-size: 1.6rem;
+  }
+
+  h3 {
+    font-size: 1.4rem;
+  }
+}
+
+@media (max-width: 576px) {
+  button {
+    padding: 0.4rem 1rem;
+  }
+
+  h1 {
+    font-size: 1.8rem;
+  }
+
+  h2 {
+    font-size: 1.4rem;
+  }
+
+  h3 {
+    font-size: 1.2rem;
+  }
+
+  p {
+    font-size: 1.4rem;
+  }
+}

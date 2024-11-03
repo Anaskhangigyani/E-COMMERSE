@@ -1,0 +1,10 @@
+require("dotenv").config();
+require("./config/ConnectDb");
+let express = require("express");
+let cors = require("cors");
+let Products = require("./routes/ShoppersRoutes");
+let app = express();
+app.use(express.json());
+app.use(cors());
+app.use("/products", Products);
+app.listen(process.env.PORT);
