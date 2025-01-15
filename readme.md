@@ -48,7 +48,7 @@ The data is stored in a MongoDB database.
    ```bash
    git clone <repository_url>
    cd <repository_folder>
-   Install dependencies:
+   Install backend dependencies:
    ```
 
 After cloning the repository, install the required backend dependencies:
@@ -60,7 +60,7 @@ Set up environment variables:
 
 Create a .env file in the root directory of the project and add the following values:
 
-plaintext
+env
 Copy code
 PORT=8000
 MONGO_URL=mongodb://127.0.0.1/my_database
@@ -107,7 +107,7 @@ PORT: The port on which the backend server will listen (default is 8000).
 
 MONGO_URL: The MongoDB connection string. Example:
 
-plaintext
+env
 Copy code
 mongodb://127.0.0.1/my_database
 Ensure MongoDB is installed and running locally or modify the connection string to use a cloud-based MongoDB service like MongoDB Atlas.
@@ -116,7 +116,9 @@ For the frontend, you may need to update the API URL to match your backend’s l
 
 API Endpoints
 Add Shopper
-POST /api/shopper
+URL: /api/shopper
+
+Method: POST
 
 Request Body:
 
@@ -138,10 +140,9 @@ Copy code
 "data": { ... }
 }
 Read Available Shoppers
-GET /api/shopper
-
+URL: /api/shopper
+Method: GET
 Response:
-
 json
 Copy code
 {
@@ -149,10 +150,9 @@ Copy code
 "success": true
 }
 Purchase Shopper
-POST /api/shopper/purchase/:shopperNo
-
+URL: /api/shopper/purchase/:shopperNo
+Method: POST
 Response:
-
 json
 Copy code
 {
@@ -160,10 +160,9 @@ Copy code
 "success": true
 }
 Read Sold Shoppers
-GET /api/sold
-
+URL: /api/sold
+Method: GET
 Response:
-
 json
 Copy code
 {
@@ -171,10 +170,9 @@ Copy code
 "success": true
 }
 Return Shopper
-POST /api/shopper/return/:shopperNo
-
+URL: /api/shopper/return/:shopperNo
+Method: POST
 Response:
-
 json
 Copy code
 {
@@ -182,10 +180,9 @@ Copy code
 "success": true
 }
 Remove Shopper
-DELETE /api/shopper/:shopperNo
-
+URL: /api/shopper/:shopperNo
+Method: DELETE
 Response:
-
 json
 Copy code
 {
@@ -193,7 +190,9 @@ Copy code
 "success": true
 }
 Update Shopper
-PUT /api/shopper/:shopperNo
+URL: /api/shopper/:shopperNo
+
+Method: PUT
 
 Request Body:
 
@@ -213,10 +212,9 @@ Copy code
 "data": { ... }
 }
 Read One Available Shopper
-GET /api/shopper/:shopperNo
-
+URL: /api/shopper/:shopperNo
+Method: GET
 Response:
-
 json
 Copy code
 {
@@ -225,10 +223,9 @@ Copy code
 "data": { ... }
 }
 Read One Sold Shopper
-GET /api/sold/:shopperNo
-
+URL: /api/sold/:shopperNo
+Method: GET
 Response:
-
 json
 Copy code
 {
@@ -252,8 +249,11 @@ npm start
 Frontend:
 To run the frontend React application:
 
-Install the necessary dependencies by running npm install.
+Install the necessary dependencies by running:
 
+bash
+Copy code
+npm install
 Start the React application:
 
 bash
