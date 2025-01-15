@@ -2,282 +2,254 @@
 
 This project consists of a **Shopper Management API** backend and a **React frontend** for managing shoppers in an e-commerce system. The system allows you to manage shopper data, including adding new shoppers, updating shopper details, purchasing a shopper, returning a shopper, and more.
 
-## Table of Contents
+## Features
 
-- [Overview](#overview)
-- [Setup](#setup)
-  - [Backend Setup](#backend-setup)
-  - [Frontend Setup](#frontend-setup)
-- [Environment Variables](#environment-variables)
-- [API Endpoints](#api-endpoints)
-  - [Add Shopper](#add-shopper)
-  - [Read Available Shoppers](#read-available-shoppers)
-  - [Purchase Shopper](#purchase-shopper)
-  - [Read Sold Shoppers](#read-sold-shoppers)
-  - [Return Shopper](#return-shopper)
-  - [Remove Shopper](#remove-shopper)
-  - [Update Shopper](#update-shopper)
-  - [Read One Available Shopper](#read-one-available-shopper)
-  - [Read One Sold Shopper](#read-one-sold-shopper)
-- [Running the Application](#running-the-application)
+### Backend (Node.js)
 
-## Overview
+- **Shopper Management**
+  - Add a new shopper with details such as name, price, and suits.
+  - View available shoppers.
+  - Purchase shoppers (move them to the sold collection).
+  - Return sold shoppers back to the available list.
+  - Update shopper details like name and price.
+  - Remove shoppers permanently.
 
-This system consists of:
+### Frontend (React)
 
-- **Backend (API)**: Manages shopper data, provides endpoints for CRUD operations on shoppers (using MongoDB as a database).
-- **Frontend (React app)**: Provides a user interface to interact with the shopper management system.
-
-### Features:
-
-- Add new shoppers.
-- View available shoppers.
-- Purchase shoppers (move them to the sold collection).
-- Return a sold shopper to the available list.
-- Remove shoppers.
-- Update shopper details.
-
-The data is stored in a MongoDB database.
+- **Shopper Management Interface** for adding, viewing, and updating shoppers.
+- **Purchase/Return** shoppers with functionality to move them between available and sold statuses.
+- **Delete Shopper** functionality to remove a shopper from the system.
 
 ## Setup
 
+### Prerequisites
+
+- Node.js and npm installed.
+- MongoDB installed and running locally or using a cloud MongoDB service like MongoDB Atlas.
+- React and related tools installed for the frontend.
+
 ### Backend Setup
 
-1. **Clone the repository**:
+1. Clone the backend repository:
 
    ```bash
    git clone <repository_url>
    cd <repository_folder>
-   Install backend dependencies:
    ```
 
-After cloning the repository, install the required backend dependencies:
+2. Install dependencies:
 
-bash
-Copy code
-npm install
-Set up environment variables:
+   ```bash
+   npm install
+   ```
 
-Create a .env file in the root directory of the project and add the following values:
+3. Set up environment variables:
 
-env
-Copy code
-PORT=8000
-MONGO_URL=mongodb://127.0.0.1/my_database
-PORT: The port on which the application will run (default is 8000).
-MONGO_URL: The connection string for your MongoDB database. Example: mongodb://127.0.0.1/my_database.
-Start the backend server:
+   Create a `.env` file in the root directory of the project and add the following values:
 
-Start the backend server by running:
+   ```env
+   PORT=8000
+   MONGO_URL=mongodb://127.0.0.1/my_database
+   ```
 
-bash
-Copy code
-npm start
-This will start the backend application on the specified port (default is 8000).
+   - **PORT**: The port on which the backend will run (default is 8000).
+   - **MONGO_URL**: The connection string for your MongoDB database.
 
-Frontend Setup
-Clone the frontend repository:
+4. Start the server:
 
-If you have a separate repository for the frontend, clone it into a different folder. If it’s in the same repository, navigate to the frontend folder:
+   ```bash
+   npm start
+   ```
 
-bash
-Copy code
-git clone <frontend_repository_url>
-cd <frontend_folder>
-Install frontend dependencies:
+   The backend will run on port `8000` by default.
 
-Install the required frontend dependencies:
+### Frontend Setup
 
-bash
-Copy code
-npm install
-Start the frontend server:
+1. Clone the frontend repository (React app):
 
-Start the frontend React application by running:
+   ```bash
+   git clone <frontend_repository_url>
+   cd <frontend_folder>
+   ```
 
-bash
-Copy code
-npm start
-This will start the frontend application on a default port, typically 3000. Make sure it can connect to the backend API at http://localhost:8000.
+2. Install dependencies:
 
-Environment Variables
-The following environment variables are required for the backend:
+   ```bash
+   npm install
+   ```
 
-PORT: The port on which the backend server will listen (default is 8000).
+3. Set up environment variables:
 
-MONGO_URL: The MongoDB connection string. Example:
+   Create a `.env` file in the root of the frontend project and add the following:
 
-env
-Copy code
-mongodb://127.0.0.1/my_database
-Ensure MongoDB is installed and running locally or modify the connection string to use a cloud-based MongoDB service like MongoDB Atlas.
+   ```env
+   REACT_APP_API_URL=http://localhost:8000/api
+   ```
 
-For the frontend, you may need to update the API URL to match your backend’s location (e.g., http://localhost:8000).
+   This points the frontend to the backend API URL.
 
-API Endpoints
-Add Shopper
-URL: /api/shopper
+4. Start the React development server:
 
-Method: POST
+   ```bash
+   npm start
+   ```
 
-Request Body:
+   The React app will run on `http://localhost:3000`.
 
-json
-Copy code
-{
-"shopperNo": "12345",
-"shopperName": "John Doe",
-"shopperPrice": 100.00,
-"suits": ["Suit 1", "Suit 2"]
-}
-Response:
+## API Endpoints
 
-json
-Copy code
-{
-"message": "Shopper created successfully.",
-"success": true,
-"data": { ... }
-}
-Read Available Shoppers
-URL: /api/shopper
+### Shopper Management Endpoints
 
-Method: GET
+#### 1. **Add Shopper**
 
-Response:
+- **URL**: `/api/shopper`
+- **Method**: `POST`
+- **Body**:
+  ```json
+  {
+    "shopperNo": "12345",
+    "shopperName": "John Doe",
+    "shopperPrice": 100.0,
+    "suits": ["Suit 1", "Suit 2"]
+  }
+  ```
 
-json
-Copy code
-{
-"shoppers": [ ... ],
-"success": true
-}
-Purchase Shopper
-URL: /api/shopper/purchase/:shopperNo
+#### 2. **Read Available Shoppers**
 
-Method: POST
+- **URL**: `/api/shopper`
+- **Method**: `GET`
+- **Response**:
+  ```json
+  {
+    "shoppers": [
+      {
+        "shopperNo": "12345",
+        "shopperName": "John Doe",
+        "shopperPrice": 100.0,
+        "suits": ["Suit 1", "Suit 2"]
+      },
+      {
+        "shopperNo": "12346",
+        "shopperName": "Jane Smith",
+        "shopperPrice": 120.0,
+        "suits": ["Suit A", "Suit B"]
+      }
+    ],
+    "success": true
+  }
+  ```
 
-Response:
+#### 3. **Purchase Shopper**
 
-json
-Copy code
-{
-"message": "Shopper moved to sold collection and deleted successfully.",
-"success": true
-}
-Read Sold Shoppers
-URL: /api/sold
+- **URL**: `/api/shopper/purchase/:shopperNo`
+- **Method**: `POST`
+- **Response**:
+  ```json
+  {
+    "message": "Shopper moved to sold collection and deleted successfully.",
+    "success": true
+  }
+  ```
 
-Method: GET
+#### 4. **Read Sold Shoppers**
 
-Response:
+- **URL**: `/api/sold`
+- **Method**: `GET`
+- **Response**:
+  ```json
+  {
+    "shoppers": [
+      {
+        "shopperNo": "67890",
+        "shopperName": "Mike Johnson",
+        "shopperPrice": 150.0,
+        "suits": ["Suit X", "Suit Y"]
+      }
+    ],
+    "success": true
+  }
+  ```
 
-json
-Copy code
-{
-"shoppers": [ ... ],
-"success": true
-}
-Return Shopper
-URL: /api/shopper/return/:shopperNo
+#### 5. **Return Shopper**
 
-Method: POST
+- **URL**: `/api/shopper/return/:shopperNo`
+- **Method**: `POST`
+- **Response**:
+  ```json
+  {
+    "message": "Shopper successfully returned to the shopper list.",
+    "success": true
+  }
+  ```
 
-Response:
+#### 6. **Remove Shopper**
 
-json
-Copy code
-{
-"message": "Shopper successfully returned to the shopper list.",
-"success": true
-}
-Remove Shopper
-URL: /api/shopper/:shopperNo
+- **URL**: `/api/shopper/:shopperNo`
+- **Method**: `DELETE`
+- **Response**:
+  ```json
+  {
+    "message": "Shopper removed successfully.",
+    "success": true
+  }
+  ```
 
-Method: DELETE
+#### 7. **Update Shopper**
 
-Response:
+- **URL**: `/api/shopper/:shopperNo`
+- **Method**: `PUT`
+- **Body**:
 
-json
-Copy code
-{
-"message": "Shopper removed successfully.",
-"success": true
-}
-Update Shopper
-URL: /api/shopper/:shopperNo
+  ```json
+  {
+    "shopperName": "Updated Name",
+    "shopperPrice": 150.0
+  }
+  ```
 
-Method: PUT
+- **Response**:
+  ```json
+  {
+    "message": "Shopper updated successfully.",
+    "success": true,
+    "data": { ... }
+  }
+  ```
 
-Request Body:
+#### 8. **Read One Available Shopper**
 
-json
-Copy code
-{
-"shopperName": "Updated Name",
-"shopperPrice": 150.00
-}
-Response:
+- **URL**: `/api/shopper/:shopperNo`
+- **Method**: `GET`
+- **Response**:
+  ```json
+  {
+    "message": "Shopper retrieved successfully.",
+    "success": true,
+    "data": { ... }
+  }
+  ```
 
-json
-Copy code
-{
-"message": "Shopper updated successfully.",
-"success": true,
-"data": { ... }
-}
-Read One Available Shopper
-URL: /api/shopper/:shopperNo
+#### 9. **Read One Sold Shopper**
 
-Method: GET
+- **URL**: `/api/sold/:shopperNo`
+- **Method**: `GET`
+- **Response**:
+  ```json
+  {
+    "message": "Shopper retrieved successfully.",
+    "success": true,
+    "data": { ... }
+  }
+  ```
 
-Response:
+## Running the Application
 
-json
-Copy code
-{
-"message": "Shopper retrieved successfully.",
-"success": true,
-"data": { ... }
-}
-Read One Sold Shopper
-URL: /api/sold/:shopperNo
+### Backend:
 
-Method: GET
+1. Follow the **Backend Setup** section to get the backend running.
+2. Test the API using Postman or your preferred API testing tool.
 
-Response:
+### Frontend:
 
-json
-Copy code
-{
-"message": "Shopper retrieved successfully.",
-"success": true,
-"data": { ... }
-}
-Running the Application
-Backend:
-To run the backend application locally:
-
-Install MongoDB locally or use a cloud service like MongoDB Atlas.
-
-Set up the .env file with the correct values for PORT and MONGO_URL.
-
-Start the backend server:
-
-bash
-Copy code
-npm start
-Frontend:
-To run the frontend React application:
-
-Install the necessary dependencies by running:
-
-bash
-Copy code
-npm install
-Start the React application:
-
-bash
-Copy code
-npm start
-This will start the frontend on http://localhost:3000, and it should be able to communicate with the backend API running on http://localhost:8000.
+1. Follow the **Frontend Setup** section to get the React application running.
+2. Access the React app at `http://localhost:3000` in your browser.
