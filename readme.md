@@ -141,8 +141,11 @@ Copy code
 }
 Read Available Shoppers
 URL: /api/shopper
+
 Method: GET
+
 Response:
+
 json
 Copy code
 {
@@ -151,8 +154,11 @@ Copy code
 }
 Purchase Shopper
 URL: /api/shopper/purchase/:shopperNo
+
 Method: POST
+
 Response:
+
 json
 Copy code
 {
@@ -161,8 +167,11 @@ Copy code
 }
 Read Sold Shoppers
 URL: /api/sold
+
 Method: GET
+
 Response:
+
 json
 Copy code
 {
@@ -171,8 +180,11 @@ Copy code
 }
 Return Shopper
 URL: /api/shopper/return/:shopperNo
+
 Method: POST
+
 Response:
+
 json
 Copy code
 {
@@ -181,8 +193,11 @@ Copy code
 }
 Remove Shopper
 URL: /api/shopper/:shopperNo
+
 Method: DELETE
+
 Response:
+
 json
 Copy code
 {
@@ -213,8 +228,11 @@ Copy code
 }
 Read One Available Shopper
 URL: /api/shopper/:shopperNo
+
 Method: GET
+
 Response:
+
 json
 Copy code
 {
@@ -224,8 +242,11 @@ Copy code
 }
 Read One Sold Shopper
 URL: /api/sold/:shopperNo
+
 Method: GET
+
 Response:
+
 json
 Copy code
 {
