@@ -1,11 +1,13 @@
-# Shopper Management API
+# Shopper Management System
 
-This is a Shopper Management API that allows you to manage shoppers in an e-commerce system. The API provides functionality to add new shoppers, update shopper details, purchase a shopper, return a shopper, and more.
+This project consists of a **Shopper Management API** backend and a **React frontend** for managing shoppers in an e-commerce system. The system allows you to manage shopper data, including adding new shoppers, updating shopper details, purchasing a shopper, returning a shopper, and more.
 
 ## Table of Contents
 
 - [Overview](#overview)
 - [Setup](#setup)
+  - [Backend Setup](#backend-setup)
+  - [Frontend Setup](#frontend-setup)
 - [Environment Variables](#environment-variables)
 - [API Endpoints](#api-endpoints)
   - [Add Shopper](#add-shopper)
@@ -21,20 +23,27 @@ This is a Shopper Management API that allows you to manage shoppers in an e-comm
 
 ## Overview
 
-This API is designed for managing shoppers in an online store. It allows you to:
+This system consists of:
+
+- **Backend (API)**: Manages shopper data, provides endpoints for CRUD operations on shoppers (using MongoDB as a database).
+- **Frontend (React app)**: Provides a user interface to interact with the shopper management system.
+
+### Features:
 
 - Add new shoppers.
 - View available shoppers.
-- Purchase (move) shoppers to a sold collection.
+- Purchase shoppers (move them to the sold collection).
 - Return a sold shopper to the available list.
-- Remove shoppers from the store.
-- Update shopper details, including adding new suits to existing shoppers.
+- Remove shoppers.
+- Update shopper details.
 
 The data is stored in a MongoDB database.
 
 ## Setup
 
-1. Clone the repository:
+### Backend Setup
+
+1. **Clone the repository**:
 
    ```bash
    git clone <repository_url>
@@ -42,33 +51,68 @@ The data is stored in a MongoDB database.
    Install dependencies:
    ```
 
+After cloning the repository, install the required backend dependencies:
+
 bash
 Copy code
 npm install
-Set up your environment variables by creating a .env file in the root directory of the project and adding the following values:
+Set up environment variables:
+
+Create a .env file in the root directory of the project and add the following values:
 
 plaintext
 Copy code
 PORT=8000
 MONGO_URL=mongodb://127.0.0.1/my_database
 PORT: The port on which the application will run (default is 8000).
-MONGO_URL: The connection string for your MongoDB database.
-Start the server:
+MONGO_URL: The connection string for your MongoDB database. Example: mongodb://127.0.0.1/my_database.
+Start the backend server:
+
+Start the backend server by running:
 
 bash
 Copy code
 npm start
-Environment Variables
-This project requires the following environment variables:
+This will start the backend application on the specified port (default is 8000).
 
-PORT: The port on which the application will listen. Default is 8000.
+Frontend Setup
+Clone the frontend repository:
+
+If you have a separate repository for the frontend, clone it into a different folder. If it’s in the same repository, navigate to the frontend folder:
+
+bash
+Copy code
+git clone <frontend_repository_url>
+cd <frontend_folder>
+Install frontend dependencies:
+
+Install the required frontend dependencies:
+
+bash
+Copy code
+npm install
+Start the frontend server:
+
+Start the frontend React application by running:
+
+bash
+Copy code
+npm start
+This will start the frontend application on a default port, typically 3000. Make sure it can connect to the backend API at http://localhost:8000.
+
+Environment Variables
+The following environment variables are required for the backend:
+
+PORT: The port on which the backend server will listen (default is 8000).
 
 MONGO_URL: The MongoDB connection string. Example:
 
 plaintext
 Copy code
 mongodb://127.0.0.1/my_database
-Make sure MongoDB is installed and running locally or modify the connection string to use a cloud-based MongoDB service like MongoDB Atlas.
+Ensure MongoDB is installed and running locally or modify the connection string to use a cloud-based MongoDB service like MongoDB Atlas.
+
+For the frontend, you may need to update the API URL to match your backend’s location (e.g., http://localhost:8000).
 
 API Endpoints
 Add Shopper
@@ -97,6 +141,7 @@ Read Available Shoppers
 GET /api/shopper
 
 Response:
+
 json
 Copy code
 {
@@ -107,6 +152,7 @@ Purchase Shopper
 POST /api/shopper/purchase/:shopperNo
 
 Response:
+
 json
 Copy code
 {
@@ -117,6 +163,7 @@ Read Sold Shoppers
 GET /api/sold
 
 Response:
+
 json
 Copy code
 {
@@ -127,6 +174,7 @@ Return Shopper
 POST /api/shopper/return/:shopperNo
 
 Response:
+
 json
 Copy code
 {
@@ -137,6 +185,7 @@ Remove Shopper
 DELETE /api/shopper/:shopperNo
 
 Response:
+
 json
 Copy code
 {
@@ -167,6 +216,7 @@ Read One Available Shopper
 GET /api/shopper/:shopperNo
 
 Response:
+
 json
 Copy code
 {
@@ -178,6 +228,7 @@ Read One Sold Shopper
 GET /api/sold/:shopperNo
 
 Response:
+
 json
 Copy code
 {
@@ -186,15 +237,26 @@ Copy code
 "data": { ... }
 }
 Running the Application
-To run the application locally, follow these steps:
+Backend:
+To run the backend application locally:
 
-Install MongoDB locally or use a MongoDB cloud service like MongoDB Atlas.
+Install MongoDB locally or use a cloud service like MongoDB Atlas.
 
-Set up the database by creating a .env file with the correct PORT and MONGO_URL.
+Set up the .env file with the correct values for PORT and MONGO_URL.
 
-Run the server:
+Start the backend server:
 
 bash
 Copy code
 npm start
-This will start the application on the specified port (default 8000). Once the server is running, you can use tools like Postman to test the API endpoints.
+Frontend:
+To run the frontend React application:
+
+Install the necessary dependencies by running npm install.
+
+Start the React application:
+
+bash
+Copy code
+npm start
+This will start the frontend on http://localhost:3000, and it should be able to communicate with the backend API running on http://localhost:8000.
